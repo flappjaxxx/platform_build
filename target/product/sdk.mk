@@ -22,6 +22,7 @@ PRODUCT_PACKAGES := \
 	DeskClock \
 	Email \
 	Email2 \
+    FJTools \
 	Exchange2 \
 	FusedLocation \
 	Gallery \

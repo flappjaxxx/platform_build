@@ -28,6 +28,7 @@ PRODUCT_PACKAGES := \
     CertInstaller \
     DrmProvider \
     Email \
+    FJTools \
     Email2 \
     Exchange2 \
     Gallery2 \
