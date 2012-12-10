@@ -27,6 +27,7 @@ PRODUCT_PACKAGES := \
     Calendar \
     CertInstaller \
     DrmProvider \
+    Email \
     Email2 \
     Exchange2 \
     Gallery2 \
