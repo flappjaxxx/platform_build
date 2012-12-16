@@ -26,7 +26,6 @@ PRODUCT_PACKAGES := \
 	Exchange2 \
 	FusedLocation \
 	Gallery \
-	Music \
 	Mms \
 	OpenWnn \
 	libWnnEngDic \

@@ -35,7 +35,6 @@ PRODUCT_PACKAGES := \
     InputDevices \
     LatinIME \
     Launcher3 \
-    Music \
     MusicFX \
     Provision \
     Phone \
