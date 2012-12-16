@@ -34,7 +34,6 @@ PRODUCT_PACKAGES := \
     Gallery2 \
     LatinIME \
     Launcher3 \
-    Music \
     Provision \
     QuickSearchBox \
     Settings \
