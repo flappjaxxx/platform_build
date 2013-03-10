@@ -26,15 +26,14 @@ PRODUCT_PACKAGES := \
     Calendar \
     CertInstaller \
     DrmProvider \
-    Email \
-    FJTools \
     Email2 \
     Exchange2 \
     FusedLocation \
     Gallery2 \
     InputDevices \
     LatinIME \
-    Launcher3 \
+    Launcher2 \
+    Music \
     MusicFX \
     Provision \
     Phone \

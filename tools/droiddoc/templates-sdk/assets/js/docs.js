@@ -15,11 +15,6 @@ var SITE_ROOT = toRoot + basePath.substring(1,basePath.indexOf("/",1));
 
 var navBarIsFixed = false;
 $(document).ready(function() {
-  if (devsite) {
-    // move the lang selector into the overflow menu
-    $("#moremenu .mid div.header:last").after($("#language").detach());
-  }
-
   // init the fullscreen toggle click event
   $('#nav-swap .fullscreen').click(function(){
     if ($(this).hasClass('disabled')) {
@@ -494,36 +489,6 @@ false; // navigate across topic boundaries only in design docs
   
   resizeNav();
 
-  /* init the language selector based on user cookie for lang */
-  loadLangPref();
-  changeNavLang(getLangPref());
-
-  /* setup event handlers to ensure the overflow menu is visible while picking lang */
-  $("#language select")
-      .mousedown(function() {
-        $("div.morehover").addClass("hover"); })
-      .blur(function() {
-        $("div.morehover").removeClass("hover"); });
-
-  /* some global variable setup */
-  resizePackagesNav = $("#resize-packages-nav");
-  classesNav = $("#classes-nav");
-  devdocNav = $("#devdoc-nav");
-
-  var cookiePath = "";
-  if (location.href.indexOf("/reference/") != -1) {
-    cookiePath = "reference_";
-  } else if (location.href.indexOf("/guide/") != -1) {
-    cookiePath = "guide_";
-  } else if (location.href.indexOf("/tools/") != -1) {
-    cookiePath = "tools_";
-  } else if (location.href.indexOf("/training/") != -1) {
-    cookiePath = "training_";
-  } else if (location.href.indexOf("/design/") != -1) {
-    cookiePath = "design_";
-  } else if (location.href.indexOf("/distribute/") != -1) {
-    cookiePath = "distribute_";
-  }
 
 });
 
@@ -611,6 +576,28 @@ addLoadEvent( function() {
   prettyPrint();
 } );
 
+function init() {
+  //resizeNav();
+
+  resizePackagesNav = $("#resize-packages-nav");
+  classesNav = $("#classes-nav");
+  devdocNav = $("#devdoc-nav");
+
+  var cookiePath = "";
+  if (location.href.indexOf("/reference/") != -1) {
+    cookiePath = "reference_";
+  } else if (location.href.indexOf("/guide/") != -1) {
+    cookiePath = "guide_";
+  } else if (location.href.indexOf("/tools/") != -1) {
+    cookiePath = "tools_";
+  } else if (location.href.indexOf("/training/") != -1) {
+    cookiePath = "training_";
+  } else if (location.href.indexOf("/design/") != -1) {
+    cookiePath = "design_";
+  } else if (location.href.indexOf("/distribute/") != -1) {
+    cookiePath = "distribute_";
+  }
+}
 
 
 
@@ -1047,25 +1034,20 @@ function changeNavLang(lang) {
   });
 }
 
-function changeLangPref(lang, submit) {
+function changeDocLang(lang) {
+  changeNavLang(lang);
+}
+
+function changeLangPref(lang, refresh) {
   var date = new Date();
   expires = date.toGMTString(date.setTime(date.getTime()+(10*365*24*60*60*1000))); 
   // keep this for 50 years
   //alert("expires: " + expires)
   writeCookie("pref_lang", lang, null, expires);
-
-  //  #######  TODO:  Remove this condition once we're stable on devsite #######
-  //  This condition is only needed if we still need to support legacy GAE server
-  if (devsite) {
-    // Switch language when on Devsite server
-    if (submit) {
-      $("#setlang").submit();
-    }
-  } else {
-    // Switch language when on legacy GAE server
-    if (submit) {
-      window.location = getBaseUri(location.pathname);
-    }
+  changeDocLang(lang);
+  if (refresh) {
+    l = getBaseUri(location.pathname);
+    window.location = l;
   }
 }
 
@@ -1162,7 +1144,6 @@ function hideExpandable(ids) {
  *  Options:
  *  btnPrev:    optional identifier for previous button
  *  btnNext:    optional identifier for next button
- *  btnPause:   optional identifier for pause button
  *  auto:       whether or not to auto-proceed
  *  speed:      animation speed
  *  autoTime:   time between auto-rotation
@@ -1180,7 +1161,6 @@ function hideExpandable(ids) {
      o = $.extend({
          btnPrev:   null,
          btnNext:   null,
-         btnPause:  null,
          auto:      true,
          speed:     500,
          autoTime:  12000,
@@ -1251,17 +1231,6 @@ function hideExpandable(ids) {
                  e.preventDefault();
                  return go(curr+o.scroll);
              });
-
-         //Pause button
-         if(o.btnPause)
-             $(o.btnPause).click(function(e) {
-                 e.preventDefault();
-                 if ($(this).hasClass('paused')) {
-                     startRotateTimer();
-                 } else {
-                     pauseRotateTimer();
-                 }
-             });
          
          //Auto rotation
          if(o.auto) startRotateTimer();
@@ -1275,12 +1244,6 @@ function hideExpandable(ids) {
                     go(curr+o.scroll);  
                   } 
               }, o.autoTime);
-             $(o.btnPause).removeClass('paused');
-         }
-
-         function pauseRotateTimer() {
-             clearInterval(timer);
-             $(o.btnPause).addClass('paused');
          }
 
          //Go to an item

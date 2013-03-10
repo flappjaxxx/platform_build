@@ -330,7 +330,12 @@ def:custom_left_nav() ?><?cs
     call:about_nav() ?><?cs 
   else ?><?cs 
     call:default_left_nav() ?> <?cs 
-  /if ?><?cs 
+  /if ?>
+    <script>
+      $(document).ready(function() {
+        changeDocLang(getLangPref());
+        });
+    </script><?cs 
 /def ?>
 
 <?cs # appears at the bottom of every page ?><?cs 
@@ -363,8 +368,6 @@ def:custom_footerlinks() ?>
 def:custom_buildinfo() ?><?cs
   if:!google ?>
     Android <?cs var:sdk.version ?>&nbsp;r<?cs var:sdk.rel.id ?> &mdash; <?cs
-  /if ?>
-<script src="<?cs var:toroot ?>timestamp.js" type="text/javascript"></script>
-<script>document.write(BUILD_TIMESTAMP)</script>
+  /if ?><?cs var:page.now ?>
 <?cs /def ?>
 

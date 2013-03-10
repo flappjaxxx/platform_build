@@ -27,13 +27,12 @@ PRODUCT_PACKAGES := \
     Calendar \
     CertInstaller \
     DrmProvider \
-    Email \
-    FJTools \
     Email2 \
     Exchange2 \
     Gallery2 \
     LatinIME \
-    Launcher3 \
+    Launcher2 \
+    Music \
     Provision \
     QuickSearchBox \
     Settings \

@@ -1,6 +1,6 @@
 <div id="footer" class="wrap" <?cs if:fullpage ?>style="width:940px"<?cs /if ?>>
         
-<?cs if:reference ?>
+<?cs if:reference||guide ?>
   <div id="copyright">
     <?cs call:custom_copyright() ?>
   </div>

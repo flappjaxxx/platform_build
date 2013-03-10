@@ -20,12 +20,11 @@ PRODUCT_PROPERTY_OVERRIDES :=
 PRODUCT_PACKAGES := \
 	Calculator \
 	DeskClock \
-	Email \
 	Email2 \
-    FJTools \
 	Exchange2 \
 	FusedLocation \
 	Gallery \
+	Music \
 	Mms \
 	OpenWnn \
 	libWnnEngDic \
@@ -36,7 +35,7 @@ PRODUCT_PACKAGES := \
 	Protips \
 	SoftKeyboard \
 	SystemUI \
-	Launcher3 \
+	Launcher2 \
 	Development \
 	DevelopmentSettings \
 	DrmProvider \
